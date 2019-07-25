@@ -44,17 +44,19 @@ int traverseList(NODE *head, int listlen){
 int addNewNode(NODE *head, int newData, int listLength){
 	
 	
-	if (listLength == 0)  /* if the first node has no data, add data to it*/
+	if (listLength == 0)  
 	{
+		/* if the first node has no data, add data to it*/
 		head->data= newData;	
 	} 
-	else  /* append the new node if list is not empty */	
+	else  	
 	{
-		
+		/* append the new node if list is not empty */
 		NODE *current = head;
 		
-		int i;		
-		for (i=0; i<listLength-1; i++) /* loop to the last node and assign it to the pointer 'current' */
+		int i;
+		/* loop to the last node and assign it to the pointer 'current' */
+		for (i=0; i<listLength-1; i++) 
 		{
 			
 			current = current->next;
@@ -65,8 +67,9 @@ int addNewNode(NODE *head, int newData, int listLength){
 		
 		newNode->data = newData;
 		newNode->next = NULL;
-			
-		current->next = newNode; /* link new node to the last node */
+		
+		/* link new node to the last node */
+		current->next = newNode; 
 	
 	}
 	
@@ -79,22 +82,31 @@ int addNewNode(NODE *head, int newData, int listLength){
 
 int insertNode(NODE* head, int newData, int position){
 	
-			
-		NODE* newNode = malloc(sizeof(NODE)); /*Allocate memory for new node */
-		NODE* afterIn; /* pointer to the node that the new node will be inserted before */
-		NODE* beforeIn; /* pointer to the node that the new node will be inserted after */
-		NODE* current = head; /* assign pointer 'current' to the first node. this will be used in 'for loop' below*/
+		/*Allocate memory for new node */
+		NODE* newNode = malloc(sizeof(NODE));
 		
+		/* pointer to the node that the new node will be inserted before */
+		NODE* afterIn;
 		
-		newNode->data = newData; /* assign new data to the new node*/
+		/* pointer to the node that the new node will be inserted after */
+		NODE* beforeIn; 
+		
+		/* assign pointer 'current' to the first node. this will be used in 'for loop' below*/
+		NODE* current = head; 
+		
+		/* assign new data to the new node*/
+		newNode->data = newData;
 		
 		
 		/*Loop to the position of insertion of new node */
 		int i;
 		for (i=0; i<position; i++){
 			
-			beforeIn = current; /* get the pointer to the node that will come before the inserted node */
-			afterIn = current->next; /* get the pointer to the node that will follow the inserted node */
+			 /* get the pointer to the node that will come before the inserted node */
+			beforeIn = current;
+			
+			/* get the pointer to the node that will follow the inserted node */
+			afterIn = current->next;
 			current = current->next; 
 			
 		}
@@ -208,21 +220,30 @@ int main(int argc, char *argv[]) {
 			
 			case 2:
 				printf("--- INSERT A NODE --- \n");
-				printf("Enter new element: "); 
-				scanf("%d", &theData);   /* get the new number to be added */
-				printf("Enter position to insert element: "); 
-				scanf("%d", &position);   /* get the insertion position */
+				printf("Enter new element: ");
 				
-				if ((position < listlen) && (position > 0)) /* check if insertion index(position) is not equal to zero or not greater than the position of last-but-one node*/
+				/* get the new number to be added */
+				scanf("%d", &theData);
+				printf("Enter position to insert element: ");
+				
+				/* get the insertion position */
+				scanf("%d", &position);
+				
+				if ((position < listlen) && (position > 0))
 				{
-					insertNode(head, theData, position); /* proceed with insertion if index(position) is within range*/
+					/* check if insertion index(position) is not equal to zero 
+					or not greater than the position of last-but-one node*/
+					
+					/* proceed with insertion if index(position) is within range*/
+					insertNode(head, theData, position); 
 					
 					listlen++;
 					traverseList(head, listlen); 
 					printf("\tLength of list: %d\n\t----------\n\n", listlen);
 					
 				} else {
-					printf("Insertion position is out of range \n\n"); /* alert user if index(position) is out of range*/
+					/* alert user if index(position) is out of range*/
+					printf("Insertion position is out of range \n\n");
 				}
 				
 				system("pause");
@@ -236,9 +257,14 @@ int main(int argc, char *argv[]) {
 				printf("\nEnter position from which element should be deleted (0 - %d): ", listlen-1);
 				scanf("%d", &position);
 				
-				if ((position < listlen)&&(position>=0)) /* check if deletion index(position) is not equal to zero or not greater than the position of last-but-one node*/
+				if ((position < listlen)&&(position>=0))
 				{
-					deleteNode(head, position, listlen);  /* proceed with deletion if index(position) is within range*/
+					 /* check if deletion index(position) is not equal 
+					 to zero or not greater than the position of last-but-one node*/
+				
+					/* proceed with deletion if index(position) is within range*/
+					deleteNode(head, position, listlen);
+					
 					/* printf("head: %d\n", head->data); */
 					listlen--;
 									
@@ -246,7 +272,8 @@ int main(int argc, char *argv[]) {
 					printf("\tLength of list: %d\n\t----------\n\n", listlen);
 					
 				} else {
-					printf("Deletion position is out of range \n"); /* alert user if index(position) is out of range*/
+					/* alert user if index(position) is out of range*/
+					printf("Deletion position is out of range \n");
 				}
 				
 				system("pause");
